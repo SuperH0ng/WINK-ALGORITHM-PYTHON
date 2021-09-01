@@ -30,7 +30,7 @@ while y < N-2 :
     y += 1
 
 
-
+result = True
 
 for y in route:
     if len(set(y) & set(travel)) == len(set(travel)) :
