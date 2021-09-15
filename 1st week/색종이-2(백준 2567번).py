@@ -21,6 +21,7 @@ for l in range(colorPaperCount):
         
 perimeter = 0
 
+# 1
 for m in range(1,101):
     for w in range(1,101):
         if paper[m][w] == 1:
