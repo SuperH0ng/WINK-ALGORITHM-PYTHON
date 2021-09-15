@@ -36,4 +36,25 @@ for m in range(1,101):
             if paper[m+1][w] == 0:
                 perimeter += 1
 
+# 2
+# def countPerimeter(q,p,final,count):
+#     if final[q][p-1] == 0:
+#         count += 1
+            
+#     if final[q][p+1] == 0:
+#         count += 1
+            
+#     if final[q-1][p] == 0:
+#         count += 1
+            
+#     if final[q+1][p] == 0:
+#         count += 1
+    
+#     return count
+
+# for m in range(1,101):
+#     for w in range(1,101):
+#         if paper[m][w] == 1:
+#             perimeter = countPerimeter(m,w,paper,perimeter)                
+                
 print(perimeter)
