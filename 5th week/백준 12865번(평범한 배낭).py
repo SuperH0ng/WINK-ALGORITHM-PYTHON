@@ -14,6 +14,6 @@ for i in range(1, N+1) :
             baeYeol[i][j] = max(baeYeol[i-1][j], baeYeol[i-1][j-W] + V)
         else :
             baeYeol[i][j] = baeYeol[i-1][j]
-for i in baeYeol:
-    print(i)
+# for i in baeYeol:
+#     print(i)
 print(baeYeol[-1][-1])
