@@ -29,9 +29,6 @@ print(sum)
 # wordToNum = {}
 # sum = 0
 
-
-
-
 # while len(numList[0]) > 0 :
 #     if numList[0][0] in wordToNum :
 #         sum += wordToNum[numList[0][0]] * (10**(len(numList[0])-1))
