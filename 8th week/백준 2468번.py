@@ -37,6 +37,5 @@ for height in range(0, 101):
 
     if answer < safeZone:
         answer = safeZone
-    # print(safeZone)
 
 print(answer)
