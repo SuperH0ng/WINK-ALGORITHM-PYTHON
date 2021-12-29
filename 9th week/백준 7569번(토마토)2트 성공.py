@@ -14,7 +14,7 @@ for i in range(H):
     for j in range(N):
         for l in range(M):
             if c[i][j][l] == '1':
-                c[i][j][l] = 1
+                c[i][j][l] = 0
                 queue.append([i, j, l])
 
 while queue:
@@ -31,7 +31,7 @@ answer = 0
 for i in range(H):
     for j in range(N):
         for l in range(M):
-            if c[i][j][l] == '-1':
+            if c[i][j][l] == '0':
                 answer = -1
                 loop1, loop2 = False, False
                 break
