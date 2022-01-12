@@ -13,7 +13,7 @@ def wifi(count, dist):
             count -= 1
             start = home[i]
     
-    if count > 0 :
+    if count != 0 :
         return -1
     return dist
 
@@ -21,12 +21,10 @@ def bin(count, start, end, m):
     mid = (start + end) // 2
     dist = wifi(count, mid)
     if start == end :
-        return max(m, dist)
+        return m
     if dist == -1 :
         return bin(count, start, mid-1, m)
     else :
-        
         return bin(count, mid+1, end, max(m, dist))
-        
-
+    
 print(bin(C-1, minDist, maxDist, 1))
