@@ -26,4 +26,4 @@ def sosu(n, start, end) :
 primeList = primeNum(1299709)
 T = int(input())
 for n in range(T):
-    print(sosu(int(input()), 0, 9999))
+    print(sosu(int(input()), 0, 99999))
