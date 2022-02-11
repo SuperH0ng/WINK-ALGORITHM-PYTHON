@@ -16,6 +16,3 @@ def solution(road, transport):
             roadDic[r[1]].append(r[0])
             
     return roadDic
-git add .
-git commit -m "upload"
-git push
