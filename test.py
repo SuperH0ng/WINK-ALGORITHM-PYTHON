@@ -18,14 +18,36 @@ def wifi(count, dist):
     return dist
 
 def bin(count, start, end, m):
+    
+    # mid = (start + end) // 2
+    
+    
+    
+    
+    
+    
+    
+    
+    
     mid = (start + end) // 2
-    dist = wifi(count, mid)
+    # dist = wifi(count, mid)
+    c = count
+    
+    s = home[0]
+    for i in range(1, len(home)):
+        if home[i] - s >= mid :
+            c -= 1
+            s = home[i]
+    if c > 0 :
+        dist = -1
+    else :
+        dist = mid
+    
     if start == end :
         return max(m, dist)
     if dist == -1 :
         return bin(count, start, mid-1, m)
     else :
-        
         return bin(count, mid+1, end, max(m, dist))
         
 
