@@ -16,40 +16,64 @@
 # print(LCS[len(str2)][len(str1)])
 
 
-def solution(gene1, gene2):
-    LCS = [[0] * (len(gene1)+1) for _ in range(len(gene2)+1)]
+# def solution(gene1, gene2):
+#     LCS = [[0] * (len(gene1)+1) for _ in range(len(gene2)+1)]
     
-    # count1 = 0; count2 = 0
-    # repeat1 = True; repeat2 = True
+#     # count1 = 0; count2 = 0
+#     # repeat1 = True; repeat2 = True
     
-    # for s in gene1 :
-    #     for i in range(len(gene2)) :
-    #         if s == gene2[i] :
-    #             count1 = i
-    #             repeat1 = False
-    #             break
-    #     if repeat1 == False :
-    #         break
+#     # for s in gene1 :
+#     #     for i in range(len(gene2)) :
+#     #         if s == gene2[i] :
+#     #             count1 = i
+#     #             repeat1 = False
+#     #             break
+#     #     if repeat1 == False :
+#     #         break
         
-    # for s in gene2 :
-    #     for i in range(len(gene1)) :
-    #         if s == gene1[i] :
-    #             count2 = i
-    #             repeat2 = False
-    #             break
-    #     if repeat2 == False :
-    #         break
+#     # for s in gene2 :
+#     #     for i in range(len(gene1)) :
+#     #         if s == gene1[i] :
+#     #             count2 = i
+#     #             repeat2 = False
+#     #             break
+#     #     if repeat2 == False :
+#     #         break
     
     
     
-    for i in range(len(gene2)):
-        for j in range(len(gene1)):
-            if gene2[i] == gene1[j]:
-                LCS[i+1][j+1] = LCS[i][j] + 1
+#     for i in range(len(gene2)):
+#         for j in range(len(gene1)):
+#             if gene2[i] == gene1[j]:
+#                 LCS[i+1][j+1] = LCS[i][j] + 1
                 
+#             else:
+#                 LCS[i+1][j+1] = max(LCS[i][j+1], LCS[i+1][j])
+
+#     return max(len(gene1), len(gene2)) - LCS[len(gene2)][len(gene1)] + 
+
+# print(solution("ACA", "CCCCG”"))
+
+
+def solution(gene1, gene2):
+    cost = [[0 for i in range(len(gene2)+1)] for i in range(len(gene1)+1)]
+    for i in range(len(gene1)+1):
+        cost[i][0] = i
+        print(cost)
+    for j in range(len(gene2)+1):
+        cost[0][j] = j
+        print(cost)
+    for i in range(len(gene1)):
+        for j in range(len(gene2)):
+            if gene1[i] == gene2[j]:
+                cost[i+1][j+1] = cost[i][j]
             else:
-                LCS[i+1][j+1] = max(LCS[i][j+1], LCS[i+1][j])
+                cost[i+1][j+1] = min(cost[i][j]+1, cost[i+1][j]+1, cost[i][j+1]+1)
+    return cost[len(gene1)][len(gene2)]
 
-    return max(len(gene1), len(gene2)) - LCS[len(gene2)][len(gene1)] + 
 
-print(solution("ACA", "CCCCG”"))
+print(solution("ACACG", "GAACCCCG"))
+
+
+# dp = [[i for i in range(len(gene1) + 1)]]
+# dp.append([j+1] + [0 for l in range(len(gene1))]) for j in range(len(gene2))

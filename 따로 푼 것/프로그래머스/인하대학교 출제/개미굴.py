@@ -1,43 +1,64 @@
 from collections import deque
+import sys
+sys.setrecursionlimit(int(1e5))
 
 def solution(road, transport):
     answer = 0
-    roadDic = {}
+    roadList = [0]
     for r in road :
-        if r[0] not in roadDic :
-            roadDic[r[0]] = [r[1]]
+        while(max(r[0], r[1]) >= len(roadList)) :
+            roadList.append(0)
+            
+        if roadList[r[0]] == 0  :
+            roadList[r[0]] = [r[1]]
         else :
-            roadDic[r[0]].append(r[1])
+            roadList[r[0]].append(r[1])
         
-        if r[1] not in roadDic :
-            roadDic[r[1]] = [r[0]]
+        if roadList[r[1]] == 0 :
+            roadList[r[1]] = [r[0]]
         else :
-            roadDic[r[1]].append(r[0])
-    print(roadDic)
-    for t in transport :
-        answer += count(roadDic, t)
-        print(answer)
-        
-    return answer
+            roadList[r[1]].append(r[0])
+    # print(roadList)
 
-def count(dic, trans) :
-    dest = trans[1]
-    queue = deque([trans])
-    cnt = 0
-
-    while queue :
-        x, y= queue.popleft()
-        print(x,y)
-        if x not in dic :
-            return -1
-        if dest in dic[x] :
-            return cnt + 1
-        
-        for i in range(len(dic[x])) :
-            for j in range(len(dic[dic[x][i]])) :
-                queue.append([dic[x][i], dic[dic[x][i]][j]])
-        cnt += 1
+    l = len(roadList)
+    parent = [0] * (l); depth = [0] * (l); c = [0] * (l)
     
-    return cnt
+    queue = deque([1])
+    while queue :
+        q = queue.popleft()
+        c[q] = True
+        
+        for x in roadList[q] :
+            if c[x] :
+                continue
+            queue.append(x)
+            parent[x] = q
+            depth[x] = depth[q] + 1
+        
+    # print(parent)
+    # print(c)
+    # print(depth)
+    
+    for t in transport :
+        answer += lca(t, depth, parent)
+    
+    return answer
+    
+def lca(t, depth, parent) :
+    a = t[0]; b = t[1]
+    count = 0
+    while depth[a] != depth[b] :
+        if depth[a] > depth[b] :
+            a = parent[a]
+            count += 1
+        else :
+            b = parent[b]
+            count += 1
+    while a != b :
+        a = parent[a]
+        b = parent[b]
+        count += 2
+        
+    return count
 
 print(solution([[6, 3], [3, 1], [3, 2], [2, 4], [5, 1]], [[6, 3], [5, 2], [5, 4]]))
