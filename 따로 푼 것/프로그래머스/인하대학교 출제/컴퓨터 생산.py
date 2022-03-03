@@ -63,7 +63,8 @@
 
 # print(solution([-1, 0, 0, 1, 3]))
 
-
+import sys
+sys.setrecursionlimit(100000)
 
 def solve(idx, nodes):
     rst = 1
@@ -86,7 +87,7 @@ def solution(company):
     for i in range(1, len(company)):
         nodes[company[i]].append(i)
         
-    print(nodes)
+    # print(nodes)
     
     answer = solve(0, nodes) -1
     return answer
