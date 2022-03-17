@@ -4,28 +4,38 @@ input = sys.stdin.readline
 def AC(order, imp, arr) :
     rev = 0
     st  = 0
-    en = len(order)
+    en = len(arr)
     for i in range(len(order)) :
         if order[i] == 'R' :
             rev = 1 - rev
+            # print("첫 번째 if", rev)
         else :
             if not rev :
-                rev += 1
+                st += 1
             else :
                 en -= 1
-        
+            # print("첫 번째 else", st, en)
         if st > en :
             return print("error")
     
+    s = ""
     if not rev :
-        return print(arr[st:en])
+        return print(str(arr[st:en]).replace(" ", ""))
     else :
-        return print(arr[st:en][::-1])
+        return print(str(arr[st:en][::-1]).replace(" ", ""))
 
 T = int(input())
 for i in range(T) :
-    o = input()
-    l = input()
-    a = input()
-    a = list(map(int, a[1:-2].split(',')))
+    o = input().rstrip()
+    l = int(input())
+    if l == 0 :
+        if 'D' in o :
+            print('error')
+        else :
+            print([])
+        input()
+        continue
+
+    a = input().rstrip()
+    a = list(map(int, a[1:-1].split(',')))
     AC(o, l, a)
