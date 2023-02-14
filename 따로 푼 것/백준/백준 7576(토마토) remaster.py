@@ -12,7 +12,7 @@ q = deque([])
 
 for y in range(n) :
     for x in range(m) :
-         if tomato[y][x] == 1 :
+        if tomato[y][x] == 1 :
             q.append(y); q.append(x)
             
 answer = 1
